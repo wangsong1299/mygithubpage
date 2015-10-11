@@ -1,0 +1,133 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>calculator</title>
+<link rel="apple-touch-icon" href="{% static "ws/img/apple-touch-icon-iphone-cal.png" %}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="{% static "ws/js/jquery-1.8.0.min.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/tween.js" %}"></script>
+<style>
+.block{width: 80%;min-height: 50px;text-align: left;margin-left: 10%;}
+.block1{width: 80%;min-height: 35px;margin-top:5px;text-align: left;margin-left: 10%;display:none;background:rgba(255,255,255,0.618)}
+#content{background: url("{% static "ws/img/bg_cal.JPG" %}");background-size: 320px 580px;width: 320px;height: 572px;}
+.block1 span{font-size: 20px;font-weight: bolder;color:red;line-height: 20px;}
+#splash_img{width: 100%;height: 100%;margin:0;}
+body{margin:0;}
+</style>
+</head>
+
+
+<body>
+<div id="splash">
+  <img src="{% static "ws/img/splash.png" %}" id="splash_img" alt="splash">
+</div>
+
+<div id="content" style="display:none">
+  <h2 style="text-align:center">小黄松股票涨停计算器</h2>
+<div class="block" style="margin-top:30px;">
+  股票代码:<input type="text" id="stock_id"/>
+  <br/>
+  <input type="button" id="submit" value="计算" style="float:right"/>
+</div>
+
+
+<div class="block1" style="margin-top:45px;background:none">
+  股票名称:<span id="name"></span>
+</div>
+<div class="block1" style="background:none">
+  当前价格:<span id="price"></span>
+</div>
+<div class="block1" style="margin-top:100px;">
+  涨停价（10%):<span id="price_up"></span>
+</div>
+<div class="block1">
+  涨半价（5%):<span id="price_up_half"></span>
+</div>
+<div class="block1">
+  跌停价（10%):<span id="price_down"></span>
+</div>
+<div class="block1">
+  跌半价（5%):<span id="price_down_half"></span>
+</div>
+
+
+
+<div style="display:none">
+  <div id="p1">{{ stock_id }}</div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+     var temp;
+     var a = $("#p1").html();
+     if(a!=""){
+      var re1=/^600/;  
+      var flag1=re1.test(a); 
+      var re2=/^000/;  
+      var flag2=re2.test(a);   
+      if(flag1){
+        temp="sh"+a;
+      }
+      if(flag2){
+        temp="sz"+a;
+      }
+      var stock_src = "http://hq.sinajs.cn/list="+temp;
+      document.write( " <script   language=javascript   charset='gb2312' src= "   +   stock_src   +   "> <\/script> ");
+
+     }
+     
+
+
+
+  $(document).ready(function(){
+          var img = new Image(); //创建一个Image对象，实现图片的预下载
+          img.src = "http://183.136.128.100:8002/static/ws/img/splash2.png"; 
+          img.onload=function(){
+            $("#splash_img").attr("src",img.src);
+          }
+
+       if(a!=""){
+            $("#splash").hide();
+            $("#content").fadeIn();
+            $(".block1").show();
+            var stock_info = "hq_str_"+temp;
+            var b = eval(stock_info);
+            var details = b.split(",");
+            $("#name").html(details[0]);
+            $("#price").html(details[3]);
+            var price=details[2];
+            var price_up = price*1.1;
+            var price_up_half = price*1.05;
+            var price_down = price*0.9;
+            var price_down_half = price*0.95;
+            $("#price_up").html(price_up.toFixed(2));
+            $("#price_up_half").html(price_up_half.toFixed(2));
+            $("#price_down").html(price_down.toFixed(2));
+            $("#price_down_half").html(price_down_half.toFixed(2));
+          }else{
+             setTimeout(function(){
+                $("#splash").fadeOut();
+                $("#content").fadeIn();
+              },2000);
+
+          }
+
+            $("#submit").click(function(){
+                var temp = $("#stock_id").val();
+                window.location.href="/calculator/"+temp;
+            })
+         
+
+
+
+
+
+  })
+</script>
+</body>
+</html>

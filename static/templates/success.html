@@ -1,0 +1,23 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+	<head>
+		<title>三农</title>
+		<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.3, user-scalable=yes"/>
+		<style>
+		.content{margin:2%;width: 96%}
+		label {width: 100%;font-size: 16px;border-bottom: #999 1px solid;display: block}
+		input,textarea{width: 100%;display: block}
+		.submit{float: left;margin-top: 20px;width: 50%;height: auto;margin-left: 25%;}
+
+		</style>
+		</head>
+	<body>
+	<div class="content">
+		<h1>恭喜你<br/>提交成功</h1>
+		<p style="text-indent:2em">任何有关暑期社会实践的信息，我们都会第一时间发布在微信公众平台上（比如社会实践点信息、志愿者名单、往期回顾等），期待您的关注！</p>
+		<img src="{% static 'admin/img/1.jpg' %}" alt="1" />
+
+		
+	</div>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="apple-touch-icon" href="{% static "ws/img/apple-touch-icon-iphone.png" %}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<title>hellostock</title>
+<script type="text/javascript" src="{% static "ws/js/jquery-1.8.0.min.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/tween.js" %}"></script>
+<style>
+.title{width:100%;font-size: 28px;text-align: center;font-weight: 900;color:#fff;margin:20px 0px;}
+.block{width: 100%;min-height: 50px;}
+body{background: url('{% static "ws/img/bg1.png" %}');background-size: 320px 576px;}
+label{font-size: 15px;color:#fff;}
+.exchange_id{margin-top: 20px;margin-left: 60px;}
+input{margin-left: 30px;border: none}
+#submit{margin-right: 40px;float: right;border:1px solid;margin-top: -25px;}
+</style>
+</head>
+
+
+<body>
+<div class="title">
+  <span id="letter_1">H</span>
+  <span id="letter_2">e</span>
+  <span id="letter_3">l</span>
+  <span id="letter_4">l</span>
+  <span id="letter_5">o</span>
+  <span id="letter_6">S</span>
+  <span id="letter_7">t</span>
+  <span id="letter_8">o</span>
+  <span id="letter_9">c</span>
+  <span id="letter_10">k</span>
+</div>
+<div class="block" style="margin-top:100px;">
+  <input type="text" id="stock_id" />
+</div>
+<div class="block">
+  <input type="radio" class="exchange_id" name="exchange_id" value="sz"/>
+  <input type="radio" class="exchange_id" name="exchange_id" value="sh"/>
+</div>
+<div class="block" style="margin-top:20px;">
+  <input type="text" id="price_expect_up" />
+</div>
+<div class="block" style="margin-top:20px;">
+  <input type="text" id="price_expect_down" />
+</div>
+<div class="block" style="display:none">
+  <label>设置报警</label><br />
+  <label>高于预期提醒</label>
+  <input type="radio" class="choice_id" name="choice" value="1"/>
+  <label>低于预期提醒</label>
+  <input type="radio" class="choice_id" name="choice" value="0"/>
+</div>
+
+<input type="submit" id="submit" />
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    setInterval(function(){
+        for(i=0;i<11;i++){
+            var r = Math.round(Math.random()*255);
+            var g = Math.round(Math.random()*255);
+            var b = Math.round(Math.random()*255);
+            $("#letter_"+i).css("color","rgb("+r+","+g+","+b+")");
+        }
+    },1000)
+
+    $("#submit").click(function(){
+          var stock_id = $("#stock_id").val();
+          var exchange_id = $(".exchange_id:checked").val();
+          var price_expect_up = $("#price_expect_up").val()*100;
+          var price_expect_down = $("#price_expect_down").val()*100;
+          var flag = $("#flag").val();
+          var stock_info_src = "/hellostock_iframe/"+exchange_id+"/"+stock_id+"/"+price_expect_up+"/"+price_expect_down+"/0/";
+          console.log(stock_info_src);
+          window.location.href=stock_info_src;
+    })
+
+  })
+</script>
+
+</body>
+</html>

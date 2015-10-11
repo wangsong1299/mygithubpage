@@ -1,0 +1,123 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+	<head>
+		<title>三农</title>
+		<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.1, user-scalable=yes"/>
+		<script type="text/javascript" src="{% static "admin/js/jquery.js" %}"></script>
+		<style>
+		.content{margin-left:3%;width: 92%;margin-right: 6%;margin-top: 20px}
+		label {width: 100%;font-size: 16px;border-bottom: #999 1px solid;display: block;color:#000}
+		input,textarea{width: 100%;display: block}
+		input{height:2em}
+		.submit{float: left;margin-top: 20px;width: 50%;height: auto;margin-left: 25%;margin-bottom:50px;height:40px;}
+		.text{float: left;margin-left: 20px;margin-right: 20px;line-height:30px;color:#000;}
+
+		</style>
+		</head>
+	<body style="background:url('{% static "admin/img/7.jpg" %}');background-repeat:x-repeat y-repeat">
+	<div class="content">
+	<div style="text-align:center">
+		<h3>浙江大学学生三农协会<br/>
+		2015年暑假社会实践志愿者报名表</h3>
+	</div>
+		<a href="/sannong_info/">关于我们的支教</a><span style="color:red"><----一定要看哦</span>
+		
+		<form action="/sannong_submit/" method="get">
+		<label>姓名:</label><input type="text" name="name" id="name"/>
+		<label>学院专业班级:</label><input type="text" name="class_id" />
+		<label>学园寝室:</label><input type="text" name="address" />
+		<label>民族:</label><input type="text" name="people" />
+		<label>学号:</label><input type="text" name="student_id" id="student_id" />
+		<label>手机(长号/短号):</label><input type="text" name="phone" id="phone"/>
+		<label>籍贯:</label><input type="text" name="birth_place" />
+		<label>邮箱:</label><input type="text" name="email" />
+		<label>个人爱好特长:</label><input type="text" name="hobby" />
+		<label>参加项目（格式：地区+支教/支农/调研）可多填:</label><input type="text" name="project">
+		<label>是否服从调剂:</label>
+		<div style="width:100%;height:40px;">
+		<div class="text">是</div>
+		<input type="checkbox" name="is_adjusted" checked='checked' value='1' style="width:20px;float:left">
+		<div class="text">否</div>
+		<input type="checkbox" name="is_adjusted" value='0' style="width:20px;float:left;">
+		</div>
+		<label>面试时间安排于5月29日至31日，请在下列时间段中选择你有空的时间段:
+		</label>
+		<table border="1" style="width:90%">
+		  <tr>
+		    <th>日期</th>
+		    <th>8:00-9:30</th>
+		    <th>10:00-11:30</th>
+		    <th>13:00-14:30</th>
+		    <th>15:00-16:30</th>
+		    <th>18:00-19:30</th>
+			<th>20:00-21:30</th>
+		  </tr>
+		  <tr>
+		    <td>29日</td>
+		    <td><input type="checkbox" name="interview" value='29-8' /></td>
+		    <td><input type="checkbox" name="interview" value='29-10' /></td>
+		    <td><input type="checkbox" name="interview" value='29-13' /></td>
+		    <td><input type="checkbox" name="interview" value='29-15' /></td>
+		    <td><input type="checkbox" name="interview" value='29-18' /></td>
+		    <td><input type="checkbox" name="interview" value='29-20' /></td>
+		  </tr>
+		   <tr>
+		    <td>30日</td>
+		    <td><input type="checkbox" name="interview" value='30-8' /></td>
+		    <td><input type="checkbox" name="interview" value='30-10' /></td>
+		    <td><input type="checkbox" name="interview" value='30-13' /></td>
+		    <td><input type="checkbox" name="interview" value='30-15' /></td>
+		    <td><input type="checkbox" name="interview" value='30-18' /></td>
+		    <td><input type="checkbox" name="interview" value='30-20' /></td>
+		  </tr>
+		   <tr>
+		    <td>31日</td>
+		    <td><input type="checkbox" name="interview" value='31-8' /></td>
+		    <td><input type="checkbox" name="interview" value='31-10' /></td>
+		    <td><input type="checkbox" name="interview" value='31-13' /></td>
+		    <td><input type="checkbox" name="interview" value='31-15' /></td>
+		    <td><input type="checkbox" name="interview" value='31-18' /></td>
+		    <td><input type="checkbox" name="interview" value='31-20' /></td>
+		  </tr>
+
+		</table>
+
+		<input type="text" name="interview_time" id="interview_time" style="display:none"/>
+
+		<label>请简述你参与此次社会实践的优势（可将你的特长展开陈述或介绍你的类似经历等）以及你将如何在团队中发挥你的优势:</label><textarea type="text" rows="5" name="advantages"></textarea>
+		<label>请简述你希望从此次社会实践活动中收获什么？你希望能为当地带去什么:</label><textarea type="text" rows="5" name="gains"></textarea>
+		<label>请简单陈述你对支教(或支农、调研)的认识，以及你对我们活动的期望:</label><textarea type="text" rows="5" name="hope"></textarea>
+		<input type="button" value="提交" class="submit" id="check">
+		<input type="submit" value="提交" class="submit" id="submit" style="display:none">
+		</form>	
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#check").click(function(){
+			var name = $("#name").val();
+			var phone = $("#phone").val();
+			var student_id = $("#student_id").val();
+			var lists = document.getElementsByName("interview");
+			var temp="";
+
+			for(var i=0;i<lists.length;i++){
+				if(lists[i].checked)
+				   temp+=lists[i].value+"   ";
+			}
+
+			$("#interview_time").val(temp);
+			
+
+			if(name==""||phone==""||student_id==""){
+				alert("信息填写不全");
+			}else
+			{
+				$("#submit").trigger("click");
+			}
+
+		})
+	})
+
+	</script>
+	</body>
+</html>

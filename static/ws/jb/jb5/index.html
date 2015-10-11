@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>九品芝麻官</title>
+<link rel="stylesheet"	href="css/style.css" media="screen">
+<script src="js/jquery-1.7.1.js"></script>
+<body>
+
+<div id="teamcont" >
+	<div style="width:780px;margin:30px auto; text-align:center">
+			
+			<div class="parinforma cssshadow">
+				<div class="closebtn"></div>
+				<div class="showLeft">
+					<div class="partener">
+						<img class="row1" src="img/partner/team7.jpg" >
+						<div class="pname">展示</div>
+						<div class="pinfo">合伙人</div>
+					</div>
+				</div>
+				<div class="showRight">
+					<div class="huncontent">	
+					包龙星（周星驰 饰）用钱买来了一个候补知县的职位，可是为人贪婪，县上的人都对他痛恨之极。在他代替正式知县的时候，戚家媳妇戚秦氏（张敏 饰）遭到了常威的强暴，后来常威动了杀机把戚家上下都杀害了，更嫁祸于戚秦氏。</br>
+常威是水师提督大人的儿子，请来大状方唐镜（吴启华 饰），收买了所有证人以便洗脱罪名。包龙星虽然极力寻找证据，也被迫害至落难他乡。他决定要上京告御状，后来他因没钱不得不在妓院打工，向老板娘学习了一身斗嘴的好功夫。他在妓院里误打误撞认识了皇上，帮助皇上有功他被封了大官，重审戚家被害的案件。他凭着聪慧与口才，全力为戚秦氏讨回公道。</br>				</div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			
+			<div id="pichuan">
+				
+				<div style="clear:both"></div> 
+				 <div  class="partener"><img class="row1" src="img/partner/team7.jpg" >
+					<div class="pname">展示</div>
+					<div class="pinfo">九品芝麻官</div>			
+				 </div>
+				
+				<div style="clear:both"></div> 
+			</div>
+	</div>		
+</div>	
+<script type="text/javascript">
+$("#pichuan .partener").mouseenter(function(){
+	$(this).find("div").css("color","red");
+	$(this).find("img").delay(200).stop().clearQueue().animate({
+		borderRadius: "20",
+		opacity: 1
+	},"fast")
+}).mouseleave(function(){
+	$(this).find("div").css("color","black");
+	$(this).find("img").delay(200).stop().clearQueue().animate({
+		borderRadius: "60",
+		opacity: 0.9
+	},"fast")
+})
+$("#pichuan .row1").click(function(){
+	var picIndex=$("#pichuan .row1").index($(this));
+	$(".parinforma").hide();
+	$("#pichuan").hide();
+	$(".parinforma").eq(picIndex).slideDown("normal");
+})
+$("#teamcont .closebtn").mouseenter(function(){
+	$(this).css({'background':'url(img/close-s.png)'});
+}).mouseleave(function(){
+	$(this).css({'background':'url(img/close-n.png)'});
+})
+$("#teamcont .closebtn").click(function(){
+	$(".parinforma").hide();
+	$("#pichuan").show();
+})
+</script>
+
+
+</body>
+</html>

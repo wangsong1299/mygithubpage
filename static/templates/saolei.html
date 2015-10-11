@@ -1,0 +1,97 @@
+﻿{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="apple-touch-icon" href="{% static "ws/img/sl/apple-touch-icon-iphone.png" %}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<title>saolei</title>
+<style type="text/css">
+
+body.caution {
+cursor: help ;
+}
+
+table.mine-sweeper {}
+
+table.mine-sweeper td {
+background-color: #F0F0F0 ;
+border: 1px solid #333333 ;
+cursor: pointer ;
+height: 25px ;
+line-height: 25px ;
+overflow: hidden ;
+text-align: center ;
+width: 25px ;
+}
+
+table.mine-sweeper td.active {
+background-color: #696767 ;
+}
+
+table.mine-sweeper td.bomb {
+font-weight: bold ;
+}
+
+table.mine-sweeper td.bombed {
+background-color: #FFD0D0 ;
+color: #CC0000 ;
+font-weight: bold ;
+}
+
+table.mine-sweeper td.caution {
+background-color: #FFD0D0 ;
+color: #CC0000 ;
+font-weight: bold ;
+}
+
+body{background-size: cover;background: url("{% static 'ws/img/bg3.png' %}")}
+
+</style>
+<script type="text/javascript" src="{% static "ws/js/jquery-1.3.2.min.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/jquery.randrange.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/jquery.repeatstring.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/jquery.randomfilter.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/jquery.near.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/jquery.minesweeper.js" %}"></script>
+
+<script type="text/javascript">
+// When the DOM is ready, build the mine sweeper game.
+jQuery(function( $ ){
+
+	var mineSweerper = new MineSweeper(
+		$( "table.mine-sweeper" ),
+		9,
+		9,				
+			"11%"
+		
+	);
+
+});
+
+</script>
+	
+</head>
+<body>
+<center>
+	<h1><br/></h1>
+	<p><br/></p>
+	
+	<table cellspacing="2" class="mine-sweeper"><tbody>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="">1</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td></tr>
+    <tr><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active bomb">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td><td class="active">&nbsp;</td></tr></tbody></table>
+</center>	
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>

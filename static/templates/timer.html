@@ -1,0 +1,95 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="apple-touch-icon" href="{% static "ws/img/apple-touch-icon-iphone-timer.png" %}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<title>Timer</title>
+<script type="text/javascript" src="{% static "ws/js/jquery-1.8.0.min.js" %}"></script>
+<style>
+
+body{background: url({% static "ws/img/timer_bg.JPG" %});background-size: 320px 576px;}
+#show{width: 100%;height: 260px;float:left;margin-top:95px;color: #fff;font-size: 88px;line-height: 260px;text-align: center;border-radius: 50px;background: rgba(0,0,0,0.618)}
+#submit_start,#submit_end{border-radius: 10px;float: left;border: solid 3px #fff;width: 32%;height:50px;margin-left: 10%;margin-top: 28px;cursor: pointer;}
+#best{float: left;width: 100%;height: 30px;color: #fff;text-align: center;font-size: 25px;margin-top: 20px;}
+#bestdiff,#bestrecord{color:red;}
+</style>
+</head>
+
+
+<body>
+  <br/>
+<div id="show">数心30s</div>
+<div id="submit_start"></div>
+<div id="submit_end" style="margin-left: 15%;"></div>
+<div id="best">最佳成绩<span id="bestrecord"></span>s <br/> 相差<span id="bestdiff"></span>s</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var then;
+    var now;
+    var best = "best";
+    var storage = window.localStorage;
+    var bgShine;
+
+    update();
+
+    $("#submit_start").click(function(){
+      then = new Date().getTime();
+      //console.log(then); 
+      $("#show").html("开始了");
+      bgShine = setInterval(bgChange,100)
+    })
+
+    $("#submit_end").click(function(){
+      now = new Date().getTime();
+      //console.log(now);
+       //console.log(then); 
+      var diff=(Number(now)-Number(then))/1000;
+      $("#show").html(diff);
+      clearInterval(bgShine);
+      var preBest=storage.getItem(best);
+      var prediff=Math.abs(preBest-30);
+      var nowdiff=Math.abs(diff-30);
+      if(nowdiff<prediff){
+        storage.setItem(best,diff);
+      }
+
+      update();
+
+    })
+
+    function update(){
+      var temp = storage.getItem(best);
+      var temp = Number(temp).toFixed(3);
+      if(temp){
+        $("#bestrecord").html(temp);
+        var difftemp = Number(30-temp).toFixed(3);
+        $("#bestdiff").html(difftemp);
+      }else{
+        storage.setItem(best,0);
+        var temp = storage.getItem(best);
+        $("#bestrecord").html(temp);
+        var difftemp = Number(Math.abs(30-temp)).toFixed(3);
+        $("#bestdiff").html(difftemp);
+      }
+
+    }
+
+
+
+    function bgChange(){
+      var r = Math.round(Math.random()*255);
+      var g = Math.round(Math.random()*255);
+      var b = Math.round(Math.random()*255);
+      var a = Math.random()*0.5;
+      $("#show").css("background","rgba("+r+","+g+","+b+","+a+")");
+}
+    
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>hellostock</title>
+<link rel="apple-touch-icon" href="{% static "ws/img/apple-touch-icon-iphone.png" %}" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="{% static "ws/js/jquery-1.8.0.min.js" %}"></script>
+<script type="text/javascript" src="{% static "ws/js/tween.js" %}"></script>
+<style>
+.block{width: 90%;min-height: 50px;text-align: left;margin-left: 5%;color:#fff;}
+body{background: #bbb;}
+#myCanvas{margin-left: 60px;}
+input{width:60px;height: 30px;border-radius: 15px;margin-left: 20px;margin-top: 15px; }
+body{background: url('{% static "ws/img/bg2.png" %}');background-size: 320px 576px;}
+</style>
+</head>
+
+
+<body>
+<iframe src="" id="sub_iframe" name="sub_iframe" frameborder="0" style="width:80%;height:250px;"></iframe>
+
+<canvas id="myCanvas" width="200px" height="200px">您的破浏览器不支持canvas！</canvas>
+
+<div>
+  <input type="button" id="alertStop" value="stop" />
+  <input type="button" id="reset" value="reset" />
+  <input type="button" id="test" value="test" />
+  <audio  loop style="display:none;z-index:-99">
+                    <source src="{% static "ws/blank.mp3" %}"></source>
+   </audio>
+</div>
+<div style="display:none">
+  <div id="p1">{{ p1 }}</div>
+  <div id="p2">{{ p2 }}</div>
+  <div id="p3">{{ p3 }}</div>
+  <div id="p4">{{ p4 }}</div>
+  <div id="p5">{{ p5 }}</div>
+  </div>
+
+
+<script type="text/javascript">
+    var p1 = $("#p1").html();
+    var p2 = $("#p2").html();
+    var p3 = $("#p3").html();
+    var p4 = $("#p4").html();
+    var p5 = $("#p5").html();
+    var sub_iframe =  "/hellostock_info/"+p1+"/"+p2+"/"+p3+"/"+p4+"/"+p5+"/";
+    $("#sub_iframe").attr("src",sub_iframe);
+    
+     var audio0 = document.getElementsByTagName("audio")[0];
+     var flag =0;
+
+  $(document).ready(function(){
+       
+        $("#alertStop").click(function(){
+            audio0.pause();
+        });
+
+        $("#reset").click(function(){
+            window.location.href="/hellostock/";       
+        });
+
+        $("#test").click(function(){           
+            audio0.play();
+        });
+
+        setInterval(function(){
+           $.ajax({
+                      type : "GET",
+                      url : "/hellostock_mysql/",
+                      dataType : "json",
+                      success : function(data){
+                        flag=data;
+                      }
+                  })
+            console.log("FLAG"+flag);
+           if(flag==1){
+            audio0.src="/static/ws/1.mp3";
+            audio0.play();
+          }
+        },8000)
+
+
+
+
+  })
+</script>
+
+
+<script>
+//设置全局变量
+var mycanvas=document.getElementById('myCanvas');
+var context=mycanvas.getContext('2d');
+window.onload=init;
+//init函数
+function init(){
+ context.translate(100,100);//改变中心位置
+ draw();
+ setInterval(draw,1000);
+}
+//draw函数
+function draw(){
+ context.clearRect(-150,-150,150,150);
+ var time=new Date();//获取时间变量
+ var hour=(time.getHours()%12)*2*Math.PI/12;
+ var minute=time.getMinutes()*2*Math.PI/60;
+ var second=time.getSeconds()*2*Math.PI/60;
+ context.beginPath();//绘制一个表盘
+ context.arc(0,0,100,0,2*Math.PI,false);
+ var gradient = context.createRadialGradient(0,0,0,0,0,100); //设置圆形渐变色
+ gradient.addColorStop(0,'#0cf');
+ gradient.addColorStop(1,'#aef'); 
+ context.fillStyle=gradient;
+ context.fill();
+ context.fillStyle='#fff';  
+ context.textBaseline='top'; 
+ context.font="normal 14px sans-serif";
+ context.fillText('song',-15,-60);
+ context.strokeStyle="#fff";//画时针
+ context.lineWidth=5;
+ context.rotate(hour);
+ context.beginPath();
+ context.moveTo(0,10);
+ context.lineTo(0,-50);
+ context.stroke();
+ context.rotate(-hour);
+ context.strokeStyle="#fff";//画分针
+ context.lineWidth=5;
+ context.rotate(minute);
+ context.beginPath();
+ context.moveTo(0,10);
+ context.lineTo(0,-80);
+ context.stroke();
+ context.rotate(-minute);
+ context.strokeStyle="#fff";//画秒针
+ context.lineWidth=3;
+ context.rotate(second);
+ context.beginPath();
+ context.moveTo(0,10);
+ context.lineTo(0,-90);
+ context.stroke();
+ context.rotate(-second);
+}
+
+//柔软形变
+var t=null;
+function sk(){
+ var du=20;
+ function a(){
+  var n=1;
+  var d=10;
+  var c=Math.abs(du)-1;
+  if(c==-1)
+   return;
+  if(du>0){
+   c=-c;
+  }
+  c=c-du;
+  var b=du;
+  function aa(){
+   n++;
+   if(n>d){
+    clearTimeout(t);
+    a();
+    return;
+   }
+   //du=Tween.Linear(n,b,c,d);
+   //$('#myCanvas').css('-webkit-transform','skew('+du+'deg)');
+   t=setTimeout(aa,17);
+  }
+  aa();
+ }
+ a();
+}
+
+mycanvas.onmouseover=sk;
+
+</script>
+
+</body>
+</html>
