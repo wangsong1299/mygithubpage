@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
     '/var/www/yixiu/static/templates/',
+    '/Users/wangsong/Desktop/temp/myownpage/static/templates/',
 )
 
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'information',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,10 +66,11 @@ WSGI_APPLICATION = 'yixiu.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 mysql_name = 'wangsong'
 mysql_user = 'root'
-mysql_pass = 'Gab821211'
-mysql_host = 'localhost'
+mysql_pass = ''
+mysql_host = ''
 mysql_host_s = ''
-mysql_port = '3306'
+mysql_port = ''
+
 
 DATABASES = {
      'default': {
