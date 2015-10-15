@@ -4,22 +4,21 @@ from django.db import models
 # Create your models here.
 class Text(models.Model):
     DEFAULT = 'DF'
-    emotion = 'EM'
-    diary = 'DI'
-    article = 'AR'
-    soso = 'SO'
+    self_work = 'SW'
+    part_time = 'PT'
+    full_time = 'FT'
 
     INFOTYPE_CHOICES = (
-            (emotion, '感性文章'),
-            (diary, '松鼠日记'),
-            (article, '奇文共赏'),
-            (soso, '随便溜溜'),
-            (DEFAULT, '未分类地'),
+            (self_work, '自己闹着玩'),
+            (part_time, '兼职努力做'),
+            (full_time, '工作在哪里'),
+            (DEFAULT, '暂时不分类'),
     )
+
     title = models.CharField(max_length = 32)
     content = models.TextField()
     create_time = models.DateTimeField(auto_now_add = True, blank = True)
-    infotype = models.CharField(max_length = 3, 
+    infotype = models.CharField(max_length = 2, 
                                 choices = INFOTYPE_CHOICES,
                                 default = DEFAULT) 
     tag = models.CharField(max_length = 32)

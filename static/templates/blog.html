@@ -10,16 +10,26 @@
 		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
 	</head>
 	<body class="">
-		<div id="text1" style="width:300px;height:200px;">
-			<div id="text1_title"></div>
-			<div id="text1_content"></div>
-			<div id="text1_tag"></div>
+		<div class="header">
+			
 		</div>
-		<div id="text2" style="width:300px;height:200px;">
-			<div id="text2_title"></div>
-			<div id="text2_content"></div>
-			<div id="text2_tag"></div>
+		<div class="blog_content">
+			<div class="block">
+					<div class="blog_abstract" id="text1">
+						<a href="#" class="text_title" id="text1_1"></a>
+						<div class="text_abstract" id="text1_2"></div>
+					</div>
+					<div class="blog_abstract" id="text2">
+						<a href="#" class="text_title" id="text2_1"></a>
+						<div class="text_abstract" id="text2_2"></div>
+					</div>
+					<div class="blog_abstract" id="text3">
+						<a href="#" class="text_title" id="text3_1"></a>
+						<div class="text_abstract" id="text3_2"></div>
+					</div>			
+			</div>
 		</div>
+		
 
 
 
@@ -29,14 +39,36 @@
 
 		<script>
 			$(document).ready(function(){
-						var text1={{ text1|safe }};
+						var text1 = {{ text1|safe }};
 						var text2 = {{ text2|safe }};
-						$("#text1_title").html(text1[0]);
-						$("#text1_content").html(text1[1]);
-						$("#text1_tag").html(text1[2]);
-						$("#text2_title").html(text2[0]);
-						$("#text2_content").html(text2[1]);
-						$("#text2_tag").html(text2[3]);																						
+						var text3 = {{ text3|safe }};
+
+						for(var i=1;i<=2;i++){
+							$("#text1_"+i).html(text1[i]);
+							$("#text2_"+i).html(text2[i]);
+							$("#text3_"+i).html(text3[i]);
+						}
+
+						$("#text1_1").attr('href','/blog/article/'+text1[0]);
+						$("#text2_1").attr('href','/blog/article/'+text2[0]);
+						$("#text3_1").attr('href','/blog/article/'+text3[0]);
+
+
+
+						$(".blog_abstract").hover(
+							function(){
+								var blog_width=parseInt(Math.random()*300+700);
+								var id=$(this).attr("id");
+								$("#"+id).animate({width:blog_width+"px"},"slow");
+								$("#"+id).css("border","solid 2px #fbee25");
+							},
+							function(){
+								var id=$(this).attr("id");
+								$("#"+id).animate({width:"700px"},"slow");
+								$("#"+id).css("border","none");
+							})
+
+																									
 				});
 		</script>
 
