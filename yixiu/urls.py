@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'yixiu.views.home', name='home'),
     url(r'^blog/', include('blog.urls')),
     url(r'^work/', include('work.urls')),
+    url(r'^photo/', include('photo.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sannong_submit/', sannong_submit),

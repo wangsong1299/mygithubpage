@@ -10,9 +10,3 @@ import json
 def index(request):
 	return HttpResponse(1)
 	
-def article(request,id):
-	return HttpResponse(1)
-
-
-
-
