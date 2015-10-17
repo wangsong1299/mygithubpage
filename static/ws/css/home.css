@@ -1,0 +1,6 @@
+.container{margin-left: auto;margin-right: auto;width: 1000px;}
+.menu_block{float: right;z-index: 999;}
+
+.sf-menu>li{float: left;position: relative;width: 100px;}
+.bartitle{color: #fff;font-size: 40px;line-height: 60px;cursor: pointer;}
+.bartitle:hover{background: rgba(255,255,255,0.3)};

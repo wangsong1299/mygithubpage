@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Home</title>
-		<link rel="icon" href="{% static "ws/images/favicon.ico" %}" />
-		<link rel="shortcut icon" href="{% static "ws/images/favicon.ico" %}" />
+		<link rel="icon" href="{% static "ws/images/logo.ico" %}" />
+		<link rel="shortcut icon" href="{% static "ws/images/logo.ico" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/style.css" %}" />
  		<link rel="stylesheet" href="{% static "ws/css/camera.css" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/form.css" %}" />
@@ -80,7 +80,6 @@
 		<header class="page1">
 			<div class="container_12">
 				<div class="grid_12">
-					<h1><a href="#" onClick="goToByScroll('page1'); return false;"><img src="{% static "ws/images/logo.ico" %}" alt="Gerald Harris attorney at law"></a></h1>
 					<div class="menu_block">
 						<nav class="">
 							<ul class="sf-menu">
@@ -144,8 +143,8 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="slogan">
-						<h3>我曾经跨过山和大海,也穿过人山人海</h3>
-						<div class="text1">
+						<a href='/photo/' style="cursor:pointer"><h3>我曾经跨过山和大海,也穿过人山人海</h3></a>
+						<div class="text1" style="line-height:28px">
 							 眼睛是最好的相机<br>
 							 记忆是最美的相册<br>
 							 曾经的花儿<br>
@@ -161,7 +160,10 @@
 			<div class="container_12">
 			<div class="grid_12">
 					<div class="slogan">
-						<br><h2>作品展</h2><h4>e键收藏、悦礼、麻客菠萝、嘟嘟养成记、招财喵、投资之星，以及我的小作品</h4></br>
+						<br>
+						<a href="/work">
+						<h2>作品展</h2></a>
+						<h4>e键收藏、悦礼、麻客菠萝、嘟嘟养成记、招财喵、投资之星，以及我的小作品(hellostock\八一扫雷\数心……)</h4></br>
 					</div>
 				</div>
 			</div>
@@ -171,7 +173,9 @@
 <div id="page4" class="content">
 			<div class="container_12">
 				<div class="grid_12">
-					<h3>Blog&comment</h3>
+					<a href="/blog">
+						<h2>博客剥壳</h2></a>
+
 				</div>
 			</div>
 		</div>

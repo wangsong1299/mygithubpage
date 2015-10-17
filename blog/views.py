@@ -8,10 +8,11 @@ from blog.models import Text
 import json
  
 def index(request):
-	textArr = Text.objects.all().order_by('-create_time')[:3]
+	textArr = Text.objects.all().order_by('-create_time')[:4]
 	text1={}
 	text2={}
 	text3={}
+	text4={}
 	text1[0]=textArr[0].id
 	text1[1]=textArr[0].title
 	text1[2]=textArr[0].abstract
@@ -26,7 +27,11 @@ def index(request):
 	text3[1]=textArr[2].title
 	text3[2]=textArr[2].abstract
 	text3[3]=textArr[2].tag
-	return render_to_response('blog.html',{'text1':json.dumps(text1),'text2':json.dumps(text2),'text3':json.dumps(text3)})
+	text4[0]=textArr[3].id
+	text4[1]=textArr[3].title
+	text4[2]=textArr[3].abstract
+	text4[3]=textArr[3].tag
+	return render_to_response('blog.html',{'text1':json.dumps(text1),'text2':json.dumps(text2),'text3':json.dumps(text3),'text4':json.dumps(text4)})
 
 def article(request,id):
 	text = Text.objects.filter(id=id)[0]
