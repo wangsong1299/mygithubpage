@@ -1,0 +1,51 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home</title>
+		<link rel="icon" href="{% static "ws/images/favicon.ico" %}" />
+		<link rel="shortcut icon" href="{% static "ws/images/favicon.ico" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/style.css" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/blog.css" %}" />
+		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
+	</head>
+	<body class="">
+		<div class="header">
+			
+		</div>
+		<div class="blog_content">
+			<div class="block">
+				<div class="article_title"></div>
+				<div class="article_tag">标签是:<span id="article_tag"></span></div>
+				<div class="article_time">破壳时:&nbsp;&nbsp;<span id="article_time">{{ text_time }}</span></div>
+				<div class="article_content">
+					
+				</div>
+			</div>
+		</div>
+		
+
+
+
+
+
+
+
+		<script>
+			$(document).ready(function(){
+					var text_title = {{ text_title|safe }};
+					$(".article_title").html(text_title);
+					var text_tag = {{ text_tag|safe }};
+					$("#article_tag").html(text_tag);
+					var text_content = {{ text_content|safe }};
+					$(".article_content").html(text_content);
+
+					$(".block").css("background","rgba(255,255,255,0.3)");
+
+																									
+				});
+		</script>
+
+		
+	</body>
+</html>

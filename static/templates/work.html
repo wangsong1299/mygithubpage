@@ -1,0 +1,77 @@
+{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home</title>
+		<link rel="icon" href="{% static "ws/images/favicon.ico" %}" />
+		<link rel="shortcut icon" href="{% static "ws/images/favicon.ico" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/style.css" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/blog.css" %}" />
+		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
+	</head>
+	<body class="">
+		<div class="header">
+			
+		</div>
+		<div class="blog_content">
+			<div class="block">
+					<div class="blog_abstract" id="text1">
+						<a href="#" class="text_title" id="text1_1"></a>
+						<div class="text_abstract" id="text1_2"></div>
+					</div>
+					<div class="blog_abstract" id="text2">
+						<a href="#" class="text_title" id="text2_1"></a>
+						<div class="text_abstract" id="text2_2"></div>
+					</div>
+					<div class="blog_abstract" id="text3">
+						<a href="#" class="text_title" id="text3_1"></a>
+						<div class="text_abstract" id="text3_2"></div>
+					</div>			
+			</div>
+		</div>
+		
+
+
+
+
+
+
+
+		<script>
+			$(document).ready(function(){
+						var text1 = {{ text1|safe }};
+						var text2 = {{ text2|safe }};
+						var text3 = {{ text3|safe }};
+
+						for(var i=1;i<=2;i++){
+							$("#text1_"+i).html(text1[i]);
+							$("#text2_"+i).html(text2[i]);
+							$("#text3_"+i).html(text3[i]);
+						}
+
+						$("#text1_1").attr('href','/blog/article/'+text1[0]);
+						$("#text2_1").attr('href','/blog/article/'+text2[0]);
+						$("#text3_1").attr('href','/blog/article/'+text3[0]);
+
+
+
+						$(".blog_abstract").hover(
+							function(){
+								var blog_width=parseInt(Math.random()*300+700);
+								var id=$(this).attr("id");
+								$("#"+id).animate({width:blog_width+"px"},"slow");
+								$("#"+id).css("border","solid 2px #fbee25");
+							},
+							function(){
+								var id=$(this).attr("id");
+								$("#"+id).animate({width:"700px"},"slow");
+								$("#"+id).css("border","none");
+							})
+
+																									
+				});
+		</script>
+
+		
+	</body>
+</html>

@@ -8,5 +8,4 @@ from blog.models import Text
 import json
  
 def index(request):
-	return HttpResponse(1)
-	
+	return render_to_response("photo.html")	
