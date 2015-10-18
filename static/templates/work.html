@@ -10,16 +10,16 @@
 		<link rel="stylesheet" href="{% static "ws/css/home.css" %}" />
 		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
 	</head>
-	<body class="">
+	<body class="" style="background:#87ceeb">
 		<div class="header">
 			<div class="container">
 					<div class="menu_block">
 						<nav class="">
 							<ul class="sf-menu">
-								<li><a href="/" class="bartitle">Home </a></li>
-								<li><a href="/photo" class="bartitle">Photo </a></li>
-								<li><a href="/work" class="bartitle">Work </a></li>
-								<li><a href="/blog" class="bartitle">Blog </a></li>
+								<li><a href="/" class="bartitle">首页 </a></li>
+								<li><a href="/admin/" class="bartitle" id="workadd">添加</a></li>
+								<li><a href="/admin/" class="bartitle" id="workdelete">修改 </a></li>
+								<li><a href="#" class="bartitle" id="worknew">足迹 </a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>
@@ -49,6 +49,8 @@
 						<div class="text_abstract" id="text5_2"></div>
 					</div>		
 			</div>
+
+			<div class="getmore">点击加载更多</div>
 		</div>
 		
 
@@ -96,6 +98,15 @@
 								$("#"+id).animate({width:"700px"},"slow");
 								$("#"+id).css("border","none");
 							})
+
+				$("#worknew").click(function(){
+					alert("还在开发中……");
+				})
+
+				$(".getmore").click(function(){
+					alert("没有更多了……");
+				})
+
 
 																									
 				});

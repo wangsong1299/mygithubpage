@@ -9,6 +9,7 @@
  		<link rel="stylesheet" href="{% static "ws/css/camera.css" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/form.css" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/home.css" %}" />
+		<link rel="stylesheet" type="text/css" href="{% static "ws/css/gdt-style.css" %}" />
 		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
 		<script type="text/javascript" src="{% static "ws/js/jquery-migrate-1.1.1.js" %}"></script>
 		<script type="text/javascript" src="{% static "ws/js/superfish.js" %}"></script>
@@ -185,11 +186,21 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="copy">
-						<a onClick="goToByScroll('page1'); return false;" href="#"><img src="{% static "ws/images/footer_logo.png" %}" alt="">
+						<a onClick="goToByScroll('page1'); return false;" href="#"><img src="{% static "ws/images/footer_logo.png" %}" alt=""></a>
 					</div>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</footer>
+
+<div class="side-bar"> 
+	<a href="#" class="icon-qq">QQ<div class="chat-tips2"><i></i><img style="width:138px;height:138px;" src="{% static "ws/img/code1.jpg" %}" alt="qq二维码"></div></a> 
+	<a href="" class="icon-chat">微信<div class="chat-tips"><i></i><img style="width:138px;height:138px;" src="{% static "ws/img/code2.jpg" %}" alt="微信订阅号"></div></a> 
+	<a target="_blank" href="http://weibo.com/2202375297/profile?topnav=1&wvr=6" class="icon-blog">微博</a> 
+	<a href="mailto:wangsong1299@163.com" class="icon-mail">mail</a> 
+</div>
+
+
+
 	</body>
 </html>

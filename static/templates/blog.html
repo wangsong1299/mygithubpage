@@ -16,10 +16,10 @@
 					<div class="menu_block">
 						<nav class="">
 							<ul class="sf-menu">
-								<li><a href="/" class="bartitle">Home </a></li>
-								<li><a href="/photo" class="bartitle">Photo </a></li>
-								<li><a href="/work" class="bartitle">Work </a></li>
-								<li><a href="/blog" class="bartitle">Blog </a></li>
+								<li><a href="/" class="bartitle">首页 </a></li>
+								<li><a href="/admin/" class="bartitle" id="blogadd">添加</a></li>
+								<li><a href="/admin/" class="bartitle" id="blogmodify">修改 </a></li>
+								<li><a href="#" class="bartitle" id="blognew">足迹 </a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>
@@ -44,7 +44,9 @@
 					<div class="blog_abstract" id="text4">
 						<a href="#" class="text_title" id="text4_1"></a>
 						<div class="text_abstract" id="text4_2"></div>
-					</div>					
+					</div>	
+				<div class="getmore">点击加载更多</div>
+				
 			</div>
 		</div>
 		
@@ -90,6 +92,15 @@
 								$("#"+id).animate({width:"700px"},"slow");
 								$("#"+id).css("border","none");
 							})
+
+				$("#blognew").click(function(){
+					alert("还在开发中……");
+				})
+
+				$(".getmore").click(function(){
+					alert("没有更多了……");
+				})
+
 
 																									
 				});

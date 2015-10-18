@@ -7,11 +7,24 @@
 		<link rel="shortcut icon" href="{% static "ws/images/favicon.ico" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/style.css" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/blog.css" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/home.css" %}" />
 		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
 	</head>
 	<body class="">
 		<div class="header">
-			
+			<div class="container">
+					<div class="menu_block">
+						<nav class="">
+							<ul class="sf-menu">
+								<li><a href="/blog" class="bartitle">目录 </a></li>
+								<li><a href="/admin/" class="bartitle" id="blogadd">添加</a></li>
+								<li><a href="/admin/" class="bartitle" id="blogmodify">修改 </a></li>
+								<li><a href="#" class="bartitle" id="blognew">足迹 </a></li>
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+			</div>			
 		</div>
 		<div class="blog_content">
 			<div class="block">
@@ -41,6 +54,11 @@
 					$(".article_content").html(text_content);
 
 					$(".block").css("background","rgba(255,255,255,0.3)");
+
+
+				$("#blognew").click(function(){
+					alert("还在开发中……");
+				})
 
 																									
 				});

@@ -3,4 +3,6 @@
 
 .sf-menu>li{float: left;position: relative;width: 100px;}
 .bartitle{color: #fff;font-size: 40px;line-height: 60px;cursor: pointer;}
-.bartitle:hover{background: rgba(255,255,255,0.3)};
+.bartitle:hover{background: rgba(255,255,255,0.3)}
+
+.getmore{width: 200px;height: 60px;line-height: 60px;left: 0;right: 0;margin-right: auto;margin-left: auto;border-radius: 10px;border: solid #fff 3px;text-align: center;cursor: pointer;font-size: 25px;margin-top:40px; }
