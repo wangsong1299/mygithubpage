@@ -7,11 +7,24 @@
 		<link rel="shortcut icon" href="{% static "ws/images/favicon.ico" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/style.css" %}" />
 		<link rel="stylesheet" href="{% static "ws/css/blog.css" %}" />
+		<link rel="stylesheet" href="{% static "ws/css/home.css" %}" />
 		<script type="text/javascript" src="{% static "ws/js/jquery.js" %}"></script>
 	</head>
 	<body class="">
 		<div class="header">
-			
+			<div class="container">
+					<div class="menu_block">
+						<nav class="">
+							<ul class="sf-menu">
+								<li><a href="/" class="bartitle">Home </a></li>
+								<li><a href="/photo" class="bartitle">Photo </a></li>
+								<li><a href="/work" class="bartitle">Work </a></li>
+								<li><a href="/blog" class="bartitle">Blog </a></li>
+							</ul>
+						</nav>
+						<div class="clear"></div>
+					</div>
+			</div>
 		</div>
 		<div class="blog_content">
 			<div class="block">
@@ -26,7 +39,15 @@
 					<div class="blog_abstract" id="text3">
 						<a href="#" class="text_title" id="text3_1"></a>
 						<div class="text_abstract" id="text3_2"></div>
-					</div>			
+					</div>		
+					<div class="blog_abstract" id="text4">
+						<a href="#" class="text_title" id="text4_1"></a>
+						<div class="text_abstract" id="text4_2"></div>
+					</div>
+					<div class="blog_abstract" id="text5">
+						<a href="#" class="text_title" id="text5_1"></a>
+						<div class="text_abstract" id="text5_2"></div>
+					</div>		
 			</div>
 		</div>
 		
@@ -42,16 +63,24 @@
 						var text1 = {{ text1|safe }};
 						var text2 = {{ text2|safe }};
 						var text3 = {{ text3|safe }};
+						var text4 = {{ text4|safe }};
+						var text5 = {{ text5|safe }};
+
 
 						for(var i=1;i<=2;i++){
 							$("#text1_"+i).html(text1[i]);
 							$("#text2_"+i).html(text2[i]);
 							$("#text3_"+i).html(text3[i]);
+							$("#text4_"+i).html(text4[i]);
+							$("#text5_"+i).html(text5[i]);
+
 						}
 
-						$("#text1_1").attr('href','/blog/article/'+text1[0]);
-						$("#text2_1").attr('href','/blog/article/'+text2[0]);
-						$("#text3_1").attr('href','/blog/article/'+text3[0]);
+						$("#text1_1").attr('href','/work/article/'+text1[0]);
+						$("#text2_1").attr('href','/work/article/'+text2[0]);
+						$("#text3_1").attr('href','/work/article/'+text3[0]);
+						$("#text4_1").attr('href','/work/article/'+text4[0]);
+						$("#text5_1").attr('href','/work/article/'+text5[0]);
 
 
 
